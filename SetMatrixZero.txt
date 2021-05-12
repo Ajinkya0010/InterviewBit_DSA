@@ -1,0 +1,100 @@
+#include <iostream>
+#include <vector> 
+
+using namespace std;
+
+
+int binary_searcherr( vector <vector<int>> A,int i,int cs ){
+    int a,f;
+    for(a=0;a<cs;++a){
+        if (A[i][a]==0){
+            f=1;
+            cout<<"Reach5  ";
+            break;
+        }
+        else{
+            cout<<"Reach6  ";
+            f=0;
+        }
+    }
+    return f;
+};
+
+
+int binary_searcherc( vector <vector<int>> A,int j ,int rs){
+    int a,f;
+    for(a=0;a<rs;++a){
+        if (A[a][j]==0){
+            f=1;
+            cout<<"Reach7  ";
+            break;
+        }
+        else{
+             cout<<"Reach8  ";
+            f=0;
+        }
+    }
+    return f;
+};
+
+vector <vector <int>> Sol(vector<vector<int> > A,int i,int rs ,int cs ){
+    int j;
+    for(j=0;j<cs;++j){
+        if(binary_searcherc(A, j, rs)){
+            cout<<"Reach3  ";
+            
+        }
+        else{
+            cout<<"Reach4  ";
+            A[i][j]=2;
+        }
+    }
+    return A;
+    
+    
+};
+
+
+
+
+int main()
+{
+    int i=0,j;
+     vector <vector <int>> A{
+        {1,1,1,1,1},
+        {1,1,0,1,1},
+        {1,1,1,1,1},
+        {0,1,0,1,1},
+        {1,1,1,1,1},
+	    {1,1,1,1,1}
+    };
+    int rs=A.size();
+    int cs=A[0].size();
+    cout<<rs<<" "<<cs;
+    //return 0;
+    while(i<rs){
+        if (binary_searcherr(A,i,cs)){
+            cout<<"Reach1  ";
+            ++i;
+        }
+        else{
+            cout<<"Reach2  ";
+            A=Sol(A,i,rs,cs);
+            ++i;
+        }
+    }
+    
+    for(i=0;i<rs;++i){
+        cout<<"\n";
+        for(j=0;j<cs;++j){
+            if(A[i][j]==1){
+                A[i][j]=0;
+            }
+            else if(A[i][j]==2){
+                A[i][j]=1;
+            }
+            cout<<A[i][j]<<" ";
+        }
+        
+    }
+}
